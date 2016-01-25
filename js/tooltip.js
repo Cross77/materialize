@@ -1,11 +1,11 @@
 (function ($) {
     $.fn.tooltip = function (options) {
-        var timeout = null,
-        margin = 5;
+        var timeout = null
 
       // Defaults
       var defaults = {
-        delay: 350
+        delay: 350,
+        margin: 5
       };
 
       // Remove tooltip from the activator
@@ -19,6 +19,7 @@
 
       options = $.extend(defaults, options);
 
+      var margin = options.margin;
 
       return this.each(function(){
         var tooltipId = Materialize.guid();
@@ -37,6 +38,8 @@
         var backdrop = $('<div></div>').addClass('backdrop');
         backdrop.appendTo(newTooltip);
         backdrop.css({ top: 0, left:0 });
+        if(options.bgc !== undefined)
+            backdrop.css({ backgroundColor: options.bgc });
 
 
       //Destroy previously binded events
